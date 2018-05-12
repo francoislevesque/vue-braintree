@@ -1,7 +1,7 @@
 <template>
     <div class="payment">
         <div ref="dropin"></div>
-        <button ref="submit" class="btn btn-primary" :disabled="loading">Pay</button>
+        <button ref="submit" :class="btnClass" :disabled="loading">{{ btnText }}</button>
     </div>
 </template>
 
@@ -17,6 +17,14 @@
             url: {
                 type: String,
                 default: '/pay'
+            },
+            btnText: {
+                type: String,
+                default: 'Pay'
+            },
+            btnClass: {
+                type: String,
+                default: 'btn btn-primary'
             }
         },
         data () {

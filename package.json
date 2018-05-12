@@ -2,17 +2,13 @@
   "name": "vue-braintree",
   "version": "0.0.1",
   "description": "Vue Braintree Component",
-  "main": "dist/index.js",
+  "main": "index.js",
   "engines": {
     "node": ">=7.0.0"
   },
   "scripts": {
-    "build": "webpack",
-    "watch": "webpack --watch",
-    "test": "mocha-webpack --webpack-config webpack-test.config.js --require test/setup.js test/**/*.spec.js --watch",
-    "test-ci": "mocha-webpack --webpack-config webpack-test.config.js --require test/setup.js test/**/*.spec.js",
-    "cover": "cross-env NODE_ENV=coverage nyc --reporter=lcov --reporter=text npm run test-ci",
-    "prepublish": "npm run build"
+    "test": "mocha-webpack --webpack-config webpack.config.js --require test/setup.js test/**/*.spec.js",
+    "test-watch": "mocha-webpack --webpack-config webpack.config.js --require test/setup.js test/**/*.spec.js --watch"
   },
   "repository": {
     "type": "git",
@@ -31,32 +27,14 @@
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.16",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-preset-es2015": "^6.24.1",
-    "chai": "^4.1.2",
-    "cross-env": "^5.1.3",
-    "istanbul-instrumenter-loader": "^3.0.0",
-    "jsdom": "^11.6.2",
+    "expect": "^22.4.3",
+    "jsdom": "^11.10.0",
     "jsdom-global": "^3.0.2",
-    "mocha": "^5.0.2",
-    "mocha-webpack": "^1.0.1",
-    "moxios": "^0.4.0",
-    "nyc": "^11.4.1",
-    "sinon": "^4.4.2",
-    "uglifyjs-webpack-plugin": "^1.2.0",
-    "vue-loader": "^14.1.1",
-    "vue-template-compiler": "^2.5.13",
-    "vue-test-utils": "^1.0.0-beta.11",
-    "webpack": "^3.11.0",
-    "webpack-bundle-analyzer": "^2.11.1",
-    "webpack-node-externals": "^1.6.0"
-  },
-  "nyc": {
-    "include": [
-      "src/**/*.js"
-    ],
-    "instrument": false,
-    "sourceMap": false
+    "mocha": "^5.1.1",
+    "mocha-webpack": "^2.0.0-beta.0",
+    "vue-loader": "^15.0.10",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^4.8.2",
+    "webpack-cli": "^2.1.3"
   }
 }

@@ -1,22 +1,37 @@
-import { expect } from 'chai'
-import Vue from 'vue'
-import VueBraintree from '../src/index'
-import Payment from '../src/components/Payment.vue'
 import { mount } from '@vue/test-utils'
+import Payment from '../src/components/Payment.vue'
+import expect from 'expect'
 
 describe ('general', () => {
-	it('can register component', () => {
-        Vue.use(VueBraintree)
-        expect(Object.keys(Vue.options.components)).to.include('v-braintree')
-    })
 
-    /*it('can register component', () => {
-        const wrapper = mount(Payment, {
+    let wrapper;
+    let btnText = 'Pay now'
+    let btnClass = 'button'
+
+    beforeEach(() => {
+        wrapper = mount(Payment, {
             propsData: {
-                token: 'xxx'
+                btnText: btnText,
+                btnClass: btnClass
             }
         })
-        const vm = wrapper.vm
-        expect(wrapper.html).to.contain('Pay')
-    })*/
+    })
+
+    it('has loading to false by default', () => {
+        expect(wrapper.vm.loading).toBe(false)
+    })
+
+    it ('loads when the button is clicked', () => {
+        expect(wrapper.vm.loading).toBe(false)
+        wrapper.find('button').trigger('click')
+        expect(wrapper.vm.loading).toBe(true)
+    })
+
+    it ('presents the correct button text', () => {
+        expect(wrapper.html()).toContain(btnText)
+    });
+
+    it ('has the correct button class', () => {
+        expect(wrapper.html()).toContain(btnClass)
+    });
 })
