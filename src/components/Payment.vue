@@ -51,11 +51,11 @@
                 vm.$refs.submit.addEventListener('click', function () {
                     if (! vm.loading && ! vm.disabled) {
                         instance.requestPaymentMethod(function (err, payload) {
-                            if (requestPaymentMethodErr) {
+                            if (err) {
                                 // No payment method is available.
                                 // An appropriate error will be shown in the UI.
-                                console.error(requestPaymentMethodErr);
-                                return;
+                                console.error(err)
+                                return
                             }
 
                             vm.loading = true
