@@ -1,14 +1,18 @@
 {
   "name": "vue-braintree",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Vue Braintree Component",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "engines": {
     "node": ">=7.0.0"
   },
   "scripts": {
-    "test": "mocha-webpack --webpack-config webpack.config.js --require test/setup.js test/**/*.spec.js",
-    "watch": "mocha-webpack --webpack-config webpack.config.js --watch --require test/setup.js test/**/*.spec.js"
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development",
+    "watch": "webpack --mode development --watch",
+    "test": "mocha-webpack --webpack-config webpack-test.config.js --require test/setup.js test/**/*.spec.js",
+    "test-watch": "mocha-webpack --webpack-config webpack-test.config.js --watch --require test/setup.js test/**/*.spec.js",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -27,6 +31,7 @@
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.16",
+    "babel-loader": "^7.1.4",
     "expect": "^22.4.3",
     "jsdom": "^11.10.0",
     "jsdom-global": "^3.0.2",
@@ -35,6 +40,7 @@
     "vue-loader": "^15.0.10",
     "vue-template-compiler": "^2.5.16",
     "webpack": "^4.8.2",
+    "webpack-bundle-analyzer": "^2.11.2",
     "webpack-cli": "^2.1.3"
   }
 }

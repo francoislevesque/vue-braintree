@@ -19,6 +19,6 @@ export default {
         |--------------------------------------------------------------------------
         */
 
-        //Vue.component('v-braintree', Payment)
+        Vue.component('v-braintree', Payment)
     }
 }

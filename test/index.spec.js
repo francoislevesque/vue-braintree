@@ -1,8 +1,19 @@
 import { mount } from '@vue/test-utils'
 import Payment from '../src/components/Payment.vue'
 import expect from 'expect'
+import Plugin from '../src/index'
+import Vue from 'vue'
 
-describe ('general', () => {
+describe ('Plugin', () => {
+
+    it('can use plugin', () => {
+        Vue.use(Plugin)
+        expect(Object.keys(Vue.options.components)).toContain('v-braintree')
+    })
+
+})
+
+describe ('Payment', () => {
 
     let wrapper;
     let btnText = 'Pay now'
