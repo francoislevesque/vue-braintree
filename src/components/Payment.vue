@@ -29,6 +29,10 @@
             btnClass: {
                 type: String,
                 default: 'btn btn-primary'
+            },
+            paypal: {
+                type: Boolean,
+                default: false
             }
         },
         data () {
@@ -39,14 +43,23 @@
         },
         mounted () {
             let vm = this
-            dropIn.create({
+
+            // Create config
+            let config = {
                 authorization: this.token,
                 container: this.$refs.dropin,
-                locale: this.locale,
-                paypal: {
+                locale: this.locale
+            }
+
+            // If Paypal is available
+            if (this.paypal) {
+                config.paypal = {
                     flow: 'vault'
                 }
-            }, function (createErr, instance) {
+            }
+
+            // Create dropin
+            dropIn.create(config, function (createErr, instance) {
                 vm.$emit('loaded')
                 vm.$refs.submit.addEventListener('click', function () {
                     if (! vm.loading && ! vm.disabled) {
