@@ -12,7 +12,8 @@ describe ('general', () => {
         wrapper = mount(Payment, {
             propsData: {
                 btnText: btnText,
-                btnClass: btnClass
+                btnClass: btnClass,
+                token: 'xxx'
             }
         })
     })
@@ -21,17 +22,11 @@ describe ('general', () => {
         expect(wrapper.vm.loading).toBe(false)
     })
 
-    it ('loads when the button is clicked', () => {
-        expect(wrapper.vm.loading).toBe(false)
-        wrapper.find('button').trigger('click')
-        expect(wrapper.vm.loading).toBe(true)
-    })
-
     it ('presents the correct button text', () => {
         expect(wrapper.html()).toContain(btnText)
     });
 
     it ('has the correct button class', () => {
-        expect(wrapper.html()).toContain(btnClass)
+        expect(wrapper.find('button').classes()).toContain(btnClass)
     });
 })

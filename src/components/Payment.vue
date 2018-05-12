@@ -14,6 +14,10 @@
                 required: true,
                 type: String
             },
+            locale: {
+                type: String,
+                default: 'en'
+            },
             url: {
                 type: String,
                 default: '/pay'
@@ -37,19 +41,25 @@
             let vm = this
             dropIn.create({
                 authorization: this.token,
-                container: vm.$refs.dropin,
+                container: this.$refs.dropin,
+                locale: this.locale,
                 paypal: {
                     flow: 'vault'
                 }
             }, function (createErr, instance) {
+                vm.$emit('loaded')
                 vm.$refs.submit.addEventListener('click', function () {
                     if (! vm.loading && ! vm.disabled) {
                         instance.requestPaymentMethod(function (err, payload) {
-                            // If validations errors are encountered, the payload will be undefined
-                            if (payload !== undefined) {
-                                vm.loading = true
-                                vm.pay(payload.nonce)
+                            if (requestPaymentMethodErr) {
+                                // No payment method is available.
+                                // An appropriate error will be shown in the UI.
+                                console.error(requestPaymentMethodErr);
+                                return;
                             }
+
+                            vm.loading = true
+                            vm.pay(payload.nonce)
                         })
                     }
                 })
