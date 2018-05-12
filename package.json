@@ -1,6 +1,6 @@
 {
   "name": "vue-braintree",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "Vue Braintree Component",
   "main": "dist/build.js",
   "engines": {
