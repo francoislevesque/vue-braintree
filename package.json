@@ -1,8 +1,8 @@
 {
   "name": "vue-braintree",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Vue Braintree Component",
-  "main": "index.js",
+  "main": "src/index.js",
   "engines": {
     "node": ">=7.0.0"
   },
