@@ -37,7 +37,7 @@
                 disabled: false // When a payment is successfully processed, the entire component is disabled
             }
         },
-        mounted() {
+        mounted () {
             let vm = this
             dropIn.create({
                 authorization: this.token,
