@@ -1,6 +1,5 @@
 import { mount } from '@vue/test-utils'
 import Payment from '../src/components/Payment.vue'
-import expect from 'expect'
 import Plugin from '../src/main'
 import Vue from 'vue'
 

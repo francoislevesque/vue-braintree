@@ -16,7 +16,7 @@
             },
             locale: {
                 type: String,
-                default: 'en'
+                default: 'en_US'
             },
             url: {
                 type: String,

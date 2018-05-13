@@ -14,11 +14,7 @@ module.exports = {
       '@': path.resolve(__dirname, 'src')
     }
   },
-  externals: {
-    'axios': 'axios',
-    'vue': 'vue',
-    'braintree-web-drop-in': 'braintree-web-drop-in'
-  },
+  externals: [require('webpack-node-externals')()],
   module: {
     rules: [
       {
@@ -40,13 +36,13 @@ module.exports = {
     ]
   },
   performance: {
-    hints: false
+    hints: "warning" // notifies you of assets and entrypoints that exceed a specific file limit
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map' // Slow build but fast rebuild
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  module.exports.devtool = '#source-map' // Complete bundle
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
@@ -68,6 +64,5 @@ if (process.env.NODE_ENV === 'production') {
 
 // test specific setups
 if (process.env.NODE_ENV === 'test') {
-  module.exports.externals = [require('webpack-node-externals')()]
   module.exports.devtool = 'eval'
 }
