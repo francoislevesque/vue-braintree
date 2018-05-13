@@ -6,7 +6,7 @@
     <a href="https://travis-ci.org/francoislevesque/vue-braintree"><img src="https://travis-ci.org/francoislevesque/vue-braintree.svg?branch=master" alt="build:passed"></a>
 </p>
 
-![alt text](https://raw.githubusercontent.com/francoislevesque/vue-braintree/master/static/example.jpg)
+![alt text](./static/example.jpg)
 
 ## Quick start
 Install the package
