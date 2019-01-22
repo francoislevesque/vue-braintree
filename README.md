@@ -11,6 +11,7 @@
 ## Quick start
 Install the package
 ``` js
+npm i vue-braintree -S
 yarn add vue-braintree
 ```
 Import and use the package
@@ -50,7 +51,7 @@ success | The transaction was failed | Error message (string)
 
 ``` bash
 # install dependencies
-yarn
+npm i
 
 # build for production with minification
 npm run build
