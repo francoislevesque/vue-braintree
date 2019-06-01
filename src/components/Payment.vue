@@ -7,6 +7,7 @@
 
 <script>
     import dropIn from 'braintree-web-drop-in'
+    import axios from 'axios'
 
     export default {
         props: {
