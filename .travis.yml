@@ -1,0 +1,26 @@
+language: node_js
+env:
+  global:
+    - CC_TEST_REPORTER_ID=c87aae342e92f8522d72c9103d9efa6d8cf4c4af26fb39705ba2d0d306d5bf73
+node_js:
+  - lts/*
+install:
+  - npm ci
+before_script:
+  - yarn
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+script:
+  - npm test
+  - npm run docs:build
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+deploy:
+  provider: pages
+  skip-cleanup: true
+  local_dir: docs/.vuepress/dist
+  github-token: $GITHUB_TOKEN # a token generated on github allowing travis to push code on you repository
+  keep-history: true
+  on:
+    branch: master
