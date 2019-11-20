@@ -10,7 +10,8 @@
     "docs:build": "vue-cli-service docs --mode build",
     "docs:serve": "vue-cli-service docs --mode serve",
     "prepublish": "vue-cli-service lint && vue-cli-service docs --mode build && vue-cli-service build",
-    "start": "vue-cli-service serve"
+    "start": "vue-cli-service serve",
+    "test:unit": "vue-cli-service test:unit"
   },
   "main": "dist/vue-braintree.common.js",
   "module": "dist/vue-braintree.esm.js",
@@ -29,13 +30,15 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.0.0",
     "@vue/cli-plugin-eslint": "^4.0.0",
+    "@vue/cli-plugin-unit-jest": "^4.0.5",
     "@vue/cli-service": "^4.0.0",
+    "@vue/test-utils": "1.0.0-beta.29",
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "vue": "^2.6.10",
     "vue-cli-plugin-p11n": "^0.4.0",
-    "vue-template-compiler": "^2.6.10",
-    "vue": "^2.6.10"
+    "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
     "root": true,
@@ -49,7 +52,18 @@
     "rules": {},
     "parserOptions": {
       "parser": "babel-eslint"
-    }
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
   },
   "postcss": {
     "plugins": {

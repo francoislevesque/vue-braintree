@@ -1,5 +1,5 @@
 module.exports = {
-  base: 'vue-braintree',
+  base: '/vue-braintree/',
   plugins: [
     require('./plugin.js')
   ],
