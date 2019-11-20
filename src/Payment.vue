@@ -88,7 +88,6 @@ export default {
         // incorrect configuration values or network issues.
         // An appropriate error will be shown in the UI.
         this.$emit("loadFail", createErr);
-        console.error(createErr);
         return;
       }
 
@@ -103,7 +102,6 @@ export default {
             // No payment method is available.
             // An appropriate error will be shown in the UI.
             this.$emit("error", err);
-            console.error(err);
             return;
           }
 
