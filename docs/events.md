@@ -39,18 +39,18 @@ The payment method request was successfull. A payload is returned with the nonce
 ```html
 <v-braintree @load="onLoad"></v-braintree>
 ```
-Will return the drop in instance when the component is successfully loaded.
+Will return the Drop-in instance when the component is successfully loaded.
 
 ## loadFail
 
 ```html
 <v-braintree @loadFail="onLoadFail"></v-braintree>
 ```
-Will return an error if the drop in component could not be mounted. An error in the create call is likely due to incorrect configuration values or network issues. An appropriate error will be shown in the UI.
+Will return an error if the Drop-in component could not be mounted. An error in the create call is likely due to incorrect configuration values or network issues. An appropriate error will be shown in the UI.
 
 ## error
 
 ```html
-<v-braintree @loadFail="error"></v-braintree>
+<v-braintree @error="error"></v-braintree>
 ```
-No payment method is available. An error is returned.
+The selected or entered payment method is not available (bad card number, missing fields, rejected card, etc.). An error is returned with a message.
