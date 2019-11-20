@@ -1,5 +1,5 @@
 /*!
- * vue-braintree v0.1.0 
+ * vue-braintree v2.0.0 
  * (c) 2019 
  * Released under the undefined License.
  */
@@ -229,7 +229,7 @@ var __vue_staticRenderFns__ = [];
     undefined
   );
 
-var version = '0.1.0';
+var version = '2.0.0';
 
 var install = function install(Vue) {
   Vue.component('v-braintree', Payment);
