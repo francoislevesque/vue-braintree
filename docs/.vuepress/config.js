@@ -1,4 +1,5 @@
 module.exports = {
+  base: 'vue-braintree',
   plugins: [
     require('./plugin.js')
   ],
@@ -11,7 +12,6 @@ module.exports = {
   },
   themeConfig: {
     repo: 'francoislevesque/vue-braintree',
-    base: 'vue-braintree',
     docsDir: 'docs',
     locales: {
       '/': {

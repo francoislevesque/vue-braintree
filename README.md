@@ -1,6 +1,7 @@
 # Vue Braintree
 
-`VueBraintree` plugin is plugin for [Vue.js](http://vuejs.org) to quickly integrate the Braintree Drop In in a Vue.js application.
+[![Maintainability](https://api.codeclimate.com/v1/badges/b448a5b0646bc4fcf196/maintainability)](https://codeclimate.com/github/francoislevesque/vue-braintree/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/b448a5b0646bc4fcf196/test_coverage)](https://codeclimate.com/github/francoislevesque/vue-braintree/test_coverage)
 
 ![Braintree Drop In](https://developers.braintreepayments.com/img/developers/client-sdk-drop-in-web.png)
 
@@ -8,7 +9,11 @@
 - Choose your own language. Available in English, French, Spanish, etc.
 - Fully customizable 
 
-[Get started](./started/) or play with the [demo](https://github.com/francoislevesque/vue-braintree/tree/dev/demo) (see [`README.md`](https://github.com/francoislevesque/vue-braintree/) to run them).
+## Documentation
+
+Complete documentation and examples available at https://francoislevesque.github.io/vue-braintree/.
+
+- **[API Documentation](https://francoislevesque.github.io/vue-braintree/)**
 
 ## Quick start
 Import the plugin in your Vue Application.
