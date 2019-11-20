@@ -1,17 +1,24 @@
-# Vue Braintree
+# Getting Started
 
-`VueBraintree` plugin is plugin for [Vue.js](http://vuejs.org) to quickly integrate the Braintree Drop In in a Vue.js application.
+> We will be using [ES2015](https://github.com/lukehoban/es6features) in the code samples in the guide.
 
-![Braintree Drop In](https://developers.braintreepayments.com/img/developers/client-sdk-drop-in-web.png)
 
-- Works with: Credit Cards, Paypal, Apple Pay, Google Pay, etc.
-- Choose your own language. Available in English, French, Spanish, etc.
-- Fully customizable 
+## HTML
 
-[Get started](./started/) or play with the [demo](https://github.com/francoislevesque/vue-braintree/tree/dev/demo) (see [`README.md`](https://github.com/francoislevesque/vue-braintree/) to run them).
+```html
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-braintree/dist/vue-braintree.js"></script>
 
-## Quick start
-Import the plugin in your Vue Application.
+<div id="#app">
+  <v-braintree 
+    authorization="xxxxxxxxxxxxxxxxxxxxxx"
+    @success="onSuccess"
+    @error="onError"
+  ></v-braintree>
+</div>
+```
+
+## JavaScript
 
 ```javascript
 import Vue from 'vue'
@@ -19,6 +26,8 @@ import vue-braintree from 'vue-braintree'
 
 Vue.use(vue-braintree)
 ```
+
+## Quick start
 
 In order to use the Drop-in UI, you'll first need to get a tokenization key from the [Control Panel](https://developers.braintreepayments.com/guides/authorization/tokenization-key/) or [generate a client token on your server](https://developers.braintreepayments.com/start/hello-server/ruby#generate-a-client-token). This will be your `authorization` used when creating Drop-in.
 
