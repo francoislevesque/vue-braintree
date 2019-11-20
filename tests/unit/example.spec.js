@@ -6,7 +6,7 @@ describe('Payment.vue', () => {
     const authorization = 'xxxxxxxx'
     const btnText = 'Pay Now'
     const wrapper = shallowMount(Payment, {
-      propsData: { authorization }
+      propsData: { authorization, btnText }
     })
     expect(wrapper.text()).toMatch(btnText)
   })
