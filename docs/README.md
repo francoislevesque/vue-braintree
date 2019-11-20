@@ -1,6 +1,5 @@
 # Introduction
 
-
 `VueBraintree` plugin is plugin for [Vue.js](http://vuejs.org) to quickly integrate the Braintree Drop In in a Vue.js application.
 
 ![Braintree Drop In](https://developers.braintreepayments.com/img/developers/client-sdk-drop-in-web.png)
