@@ -1,5 +1,6 @@
 # Vue Braintree
 
+[![Build Status](https://travis-ci.org/francoislevesque/vue-braintree.svg?branch=master)](https://travis-ci.org/francoislevesque/vue-braintree)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b448a5b0646bc4fcf196/maintainability)](https://codeclimate.com/github/francoislevesque/vue-braintree/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/b448a5b0646bc4fcf196/test_coverage)](https://codeclimate.com/github/francoislevesque/vue-braintree/test_coverage)
 

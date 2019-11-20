@@ -10,7 +10,7 @@ Include vue-braintree after Vue and it will install itself automatically:
 
 ```html
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/vue-braintree/dist/vue-braintree.js"></script>
+<script src="https://unpkg.com/vue-braintree/dist/vue-braintree.umd.min.js"></script>
 ```
 
 ## NPM
