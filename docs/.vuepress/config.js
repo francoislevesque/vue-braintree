@@ -11,6 +11,7 @@ module.exports = {
   },
   themeConfig: {
     repo: 'francoislevesque/vue-braintree',
+    base: 'vue-braintree',
     docsDir: 'docs',
     locales: {
       '/': {
