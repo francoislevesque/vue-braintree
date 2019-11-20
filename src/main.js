@@ -1,8 +1,9 @@
-import Payment from '@/components/Payment.vue'
+import Vue from 'vue'
+import App from './App.vue'
+import './plugin'
 
-export default {
+Vue.config.productionTip = false
 
-    install (Vue, options) {
-        Vue.component('v-braintree', Payment)
-    }
-}
+new Vue({
+  render: h => h(App),
+}).$mount('#app')
