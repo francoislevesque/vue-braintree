@@ -57,6 +57,17 @@ export default {
     card: {
       type: Object,
       default: undefined
+    },
+    threeDSecure: {
+      default: false,
+      type: Boolean
+    },
+    threeDSecureParameters: {
+      required: false,
+      default: null,
+      validator: (value) => {
+        return typeof value === 'object';
+      }
     }
   },
   data() {
@@ -77,7 +88,8 @@ export default {
       applePay: this.applePay,
       googlePay: this.googlePay,
       vaultManager: this.vaultManager,
-      card: this.card
+      card: this.card,
+      threeDSecure: this.threeDSecure
     };
 
     // Create dropin
@@ -94,10 +106,18 @@ export default {
       this.instance = instance;
 
       // Load event
-      this.$emit("load", instance);
+      this.$emit("load", this.instance);
 
-      this.$refs.submit.addEventListener("click", () => {
-        instance.requestPaymentMethod((err, payload) => {
+      this.$refs.submit.addEventListener("click", e => {
+        e.preventDefault();
+
+        let requestPaymentConfig = {};
+
+        if (this.threeDSecure === true) {
+          requestPaymentConfig.threeDSecure = this.threeDSecureParameters
+        }
+
+        this.instance.requestPaymentMethod(requestPaymentConfig, (err, payload) => {
           if (err) {
             // No payment method is available.
             // An appropriate error will be shown in the UI.
