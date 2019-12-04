@@ -11,5 +11,3 @@ new Vue({
   // plugin,
   render: h => h(App)
 }).$mount('#app')
-
-
