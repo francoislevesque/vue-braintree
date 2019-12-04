@@ -1,5 +1,5 @@
 /*!
- * vue-braintree v2.0.0 
+ * vue-braintree v2.0.1 
  * (c) 2019 
  * Released under the undefined License.
  */
@@ -9,7 +9,20 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var dropIn = _interopDefault(require('braintree-web-drop-in'));
 
-//
+function _typeof(obj) {
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function (obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
 var script = {
   props: {
     authorization: {
@@ -59,6 +72,17 @@ var script = {
     card: {
       type: Object,
       default: undefined
+    },
+    threeDSecure: {
+      default: false,
+      type: Boolean
+    },
+    threeDSecureParameters: {
+      required: false,
+      default: null,
+      validator: function validator(value) {
+        return _typeof(value) === 'object';
+      }
     }
   },
   data: function data() {
@@ -82,7 +106,8 @@ var script = {
       applePay: this.applePay,
       googlePay: this.googlePay,
       vaultManager: this.vaultManager,
-      card: this.card
+      card: this.card,
+      threeDSecure: this.threeDSecure
     }; // Create dropin
 
     dropIn.create(config, function (createErr, instance) {
@@ -97,10 +122,17 @@ var script = {
 
       _this.instance = instance; // Load event
 
-      _this.$emit("load", instance);
+      _this.$emit("load", _this.instance);
 
-      _this.$refs.submit.addEventListener("click", function () {
-        instance.requestPaymentMethod(function (err, payload) {
+      _this.$refs.submit.addEventListener("click", function (e) {
+        e.preventDefault();
+        var requestPaymentConfig = {};
+
+        if (_this.threeDSecure === true) {
+          requestPaymentConfig.threeDSecure = _this.threeDSecureParameters;
+        }
+
+        _this.instance.requestPaymentMethod(requestPaymentConfig, function (err, payload) {
           if (err) {
             // No payment method is available.
             // An appropriate error will be shown in the UI.
@@ -233,7 +265,7 @@ var __vue_staticRenderFns__ = [];
     undefined
   );
 
-var version = '2.0.0';
+var version = '2.0.1';
 
 var install = function install(Vue) {
   Vue.component('v-braintree', Payment);
