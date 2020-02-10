@@ -1,7 +1,9 @@
 <template>
   <div class="payment">
     <div ref="dropin"></div>
-    <button ref="submit" :class="btnClass">{{ btnText }}</button>
+    <slot name="button" v-bind:submit="submit">
+      <button @click="submit" :class="btnClass">{{ btnText }}</button>
+    </slot>
   </div>
 </template>
 
@@ -107,28 +109,29 @@ export default {
 
       // Load event
       this.$emit("load", this.instance);
+    });
+  },
+  methods: {
+    submit (e) {
+      e.preventDefault();
 
-      this.$refs.submit.addEventListener("click", e => {
-        e.preventDefault();
+      let requestPaymentConfig = {};
 
-        let requestPaymentConfig = {};
+      if (this.threeDSecure === true) {
+        requestPaymentConfig.threeDSecure = this.threeDSecureParameters
+      }
 
-        if (this.threeDSecure === true) {
-          requestPaymentConfig.threeDSecure = this.threeDSecureParameters
+      this.instance.requestPaymentMethod(requestPaymentConfig, (err, payload) => {
+        if (err) {
+          // No payment method is available.
+          // An appropriate error will be shown in the UI.
+          this.$emit("error", err);
+          return;
         }
 
-        this.instance.requestPaymentMethod(requestPaymentConfig, (err, payload) => {
-          if (err) {
-            // No payment method is available.
-            // An appropriate error will be shown in the UI.
-            this.$emit("error", err);
-            return;
-          }
-
-          this.$emit("success", payload);
-        });
+        this.$emit("success", payload);
       });
-    });
+    }
   }
 };
 </script>

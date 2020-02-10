@@ -50,3 +50,15 @@ You must generate a client token if you want to use 3D Secure (3DS). Tokenizatio
 >
 </v-braintree>
 ```
+
+## Replace the button
+
+The submit button is in a scoped slot, so you can replace it with any other component as necessary. For example, using a Vuetify button:
+
+```Vue
+<v-braintree authorization="xxxxxxxxxxxxxxxxxx">
+  <template v-slot:button="slotProps">
+    <v-btn @click="slotProps.submit" color="success">Fancy button</v-btn>
+  </template>
+</v-braintree>
+```
