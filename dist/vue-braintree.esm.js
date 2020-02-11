@@ -122,10 +122,13 @@ var script = {
     });
   },
   methods: {
-    submit: function submit(e) {
+    submit: function submit(event) {
       var _this2 = this;
 
-      e.preventDefault();
+      if (event) {
+        event.preventDefault();
+      }
+
       var requestPaymentConfig = {};
 
       if (this.threeDSecure === true) {

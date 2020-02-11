@@ -112,8 +112,10 @@ export default {
     });
   },
   methods: {
-    submit (e) {
-      e.preventDefault();
+    submit (event) {
+      if (event) {
+        event.preventDefault();
+      }
 
       let requestPaymentConfig = {};
 
