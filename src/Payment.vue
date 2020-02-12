@@ -1,13 +1,14 @@
 <template>
   <div class="payment">
     <div ref="dropin"></div>
-    <button ref="submit" :class="btnClass">{{ btnText }}</button>
+    <slot name="button" v-bind:submit="submit">
+      <button @click="submit" :class="btnClass">{{ btnText }}</button>
+    </slot>
   </div>
 </template>
 
 <script>
 import dropIn from "braintree-web-drop-in";
-
 export default {
   props: {
     authorization: {
@@ -91,10 +92,8 @@ export default {
       card: this.card,
       threeDSecure: this.threeDSecure
     };
-
     // Create dropin
     dropIn.create(config, (createErr, instance) => {
-
       if (createErr) {
         // An error in the create call is likely due to
         // incorrect configuration values or network issues.
@@ -102,33 +101,30 @@ export default {
         this.$emit("loadFail", createErr);
         return;
       }
-
       this.instance = instance;
-
       // Load event
       this.$emit("load", this.instance);
-
-      this.$refs.submit.addEventListener("click", e => {
-        e.preventDefault();
-
-        let requestPaymentConfig = {};
-
-        if (this.threeDSecure === true) {
-          requestPaymentConfig.threeDSecure = this.threeDSecureParameters
-        }
-
-        this.instance.requestPaymentMethod(requestPaymentConfig, (err, payload) => {
-          if (err) {
-            // No payment method is available.
-            // An appropriate error will be shown in the UI.
-            this.$emit("error", err);
-            return;
-          }
-
-          this.$emit("success", payload);
-        });
-      });
     });
+  },
+  methods: {
+    submit (event) {
+      if (event) {
+        event.preventDefault();
+      }
+      let requestPaymentConfig = {};
+      if (this.threeDSecure === true) {
+        requestPaymentConfig.threeDSecure = this.threeDSecureParameters
+      }
+      this.instance.requestPaymentMethod(requestPaymentConfig, (err, payload) => {
+        if (err) {
+          // No payment method is available.
+          // An appropriate error will be shown in the UI.
+          this.$emit("error", err);
+          return;
+        }
+        this.$emit("success", payload);
+      });
+    }
   }
 };
 </script>

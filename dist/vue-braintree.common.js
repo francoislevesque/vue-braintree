@@ -1,6 +1,6 @@
 /*!
- * vue-braintree v2.0.1 
- * (c) 2019 
+ * vue-braintree v2.0.2 
+ * (c) 2020 
  * Released under the undefined License.
  */
 'use strict';
@@ -123,28 +123,34 @@ var script = {
       _this.instance = instance; // Load event
 
       _this.$emit("load", _this.instance);
+    });
+  },
+  methods: {
+    submit: function submit(event) {
+      var _this2 = this;
 
-      _this.$refs.submit.addEventListener("click", function (e) {
-        e.preventDefault();
-        var requestPaymentConfig = {};
+      if (event) {
+        event.preventDefault();
+      }
 
-        if (_this.threeDSecure === true) {
-          requestPaymentConfig.threeDSecure = _this.threeDSecureParameters;
+      var requestPaymentConfig = {};
+
+      if (this.threeDSecure === true) {
+        requestPaymentConfig.threeDSecure = this.threeDSecureParameters;
+      }
+
+      this.instance.requestPaymentMethod(requestPaymentConfig, function (err, payload) {
+        if (err) {
+          // No payment method is available.
+          // An appropriate error will be shown in the UI.
+          _this2.$emit("error", err);
+
+          return;
         }
 
-        _this.instance.requestPaymentMethod(requestPaymentConfig, function (err, payload) {
-          if (err) {
-            // No payment method is available.
-            // An appropriate error will be shown in the UI.
-            _this.$emit("error", err);
-
-            return;
-          }
-
-          _this.$emit("success", payload);
-        });
+        _this2.$emit("success", payload);
       });
-    });
+    }
   }
 };
 
@@ -237,7 +243,7 @@ var normalizeComponent_1 = normalizeComponent;
 const __vue_script__ = script;
 
 /* template */
-var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"payment"},[_c('div',{ref:"dropin"}),_vm._v(" "),_c('button',{ref:"submit",class:_vm.btnClass},[_vm._v(_vm._s(_vm.btnText))])])};
+var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"payment"},[_c('div',{ref:"dropin"}),_vm._v(" "),_vm._t("button",[_c('button',{class:_vm.btnClass,on:{"click":_vm.submit}},[_vm._v(_vm._s(_vm.btnText))])],{"submit":_vm.submit})],2)};
 var __vue_staticRenderFns__ = [];
 
   /* style */
@@ -265,7 +271,7 @@ var __vue_staticRenderFns__ = [];
     undefined
   );
 
-var version = '2.0.1';
+var version = '2.0.2';
 
 var install = function install(Vue) {
   Vue.component('v-braintree', Payment);
