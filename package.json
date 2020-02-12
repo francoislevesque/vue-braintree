@@ -9,7 +9,7 @@
     "docs": "npm run docs:serve",
     "docs:build": "vuepress build docs",
     "docs:serve": "vuepress dev docs",
-    "prepublish": "vue-cli-service lint && vue-cli-service test:unit && vue-cli-service docs --mode build && vue-cli-service build",
+    "prepublish": "vue-cli-service lint && vue-cli-service test:unit && vuepress build docs && vue-cli-service build",
     "start": "vue-cli-service serve",
     "test:unit": "vue-cli-service test:unit"
   },
