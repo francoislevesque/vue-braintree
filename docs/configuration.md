@@ -14,9 +14,27 @@ locale | The desired locale (<a href="https://github.com/braintree/braintree-web
 translations | Custom translations. See the default translations for [a full list of translation strings](https://github.com/braintree/braintree-web-drop-in/blob/master/src/translations/en_US.js). | Object | |
 btnText | The button text | String | 'Pay' |
 btnClass | The button class | String | 'btn btn-primary' |
+card | You can collect the cardholder name as part of the credit card form <a href="https://developers.braintreepayments.com/guides/drop-in/customization/javascript/v3#collect-cardholder-name">by settings the card configuration</a> | Object | null
 vaultManager | If you authorize Drop-in using client tokens generated with customer_ids, you can also enable customers to remove saved payment methods from their Vault records. | Boolean | false
 threeDSecure | To enable 3DS. **You must generate a client token if you want to use 3D Secure (3DS). Tokenization keys can't be used to verify 3D Secure enabled cards.**. | Boolean | false
 threeDSecureParameters | The client informations when 3DS is enabled. | Object | null
+
+## Collect cardholder name
+
+You can collect the cardholder name as part of the credit card form.
+
+```vue
+<v-braintree 
+    authorization="xxxxxxxxxxxxxxxxxxxxxx"
+    :card="{
+        cardholderName: {
+            required: true
+        }
+    }"
+    @success="onSuccess"
+    @error="onError"
+></v-braintree> 
+```
 
 ## Enable 3D Secure
 
@@ -28,7 +46,7 @@ You must generate a client token if you want to use 3D Secure (3DS). Tokenizatio
 
 :::
 
-```
+```vue
 <v-braintree
     authorization="xxxxxxxxxxxxxxxxxx"
     :three-d-secure="true"

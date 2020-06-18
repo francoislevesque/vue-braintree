@@ -1,9 +1,23 @@
 # Events
 
+## load
+
+```html
+<v-braintree @load="onLoad"></v-braintree>
+```
+Called with the Braintree Drop-In instance when done initializing. You can call all regular <a href="https://braintree.github.io/braintree-web-drop-in/docs/current/Dropin.html">Drop-In methods</a>
+
+## loadFail
+
+```html
+<v-braintree @loadFail="onLoadFail"></v-braintree>
+```
+Will return an error if the Drop-in component could not be mounted. An error in the create call is likely due to incorrect configuration values or network issues. An appropriate error will be shown in the UI.
+
 ## success
 
 ```html
-<v-braintree @loadFail="success"></v-braintree>
+<v-braintree @success="success()"></v-braintree>
 ```
 The payment method request was successfull. A payload is returned with the nonce.
 ```js
@@ -33,20 +47,6 @@ The payment method request was successfull. A payload is returned with the nonce
     }
 }
 ```
-
-## load
-
-```html
-<v-braintree @load="onLoad"></v-braintree>
-```
-Will return the Drop-in instance when the component is successfully loaded.
-
-## loadFail
-
-```html
-<v-braintree @loadFail="onLoadFail"></v-braintree>
-```
-Will return an error if the Drop-in component could not be mounted. An error in the create call is likely due to incorrect configuration values or network issues. An appropriate error will be shown in the UI.
 
 ## error
 
