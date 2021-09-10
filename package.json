@@ -24,7 +24,7 @@
     "src"
   ],
   "dependencies": {
-    "braintree-web-drop-in": "^1.22.0",
+    "braintree-web-drop-in": "^1.31.2",
     "core-js": "^3.6.4"
   },
   "devDependencies": {
