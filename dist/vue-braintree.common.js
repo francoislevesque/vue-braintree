@@ -1,5 +1,5 @@
 /*!
- * vue-braintree v2.0.3 
+ * vue-braintree v2.1.0 
  * (c) 2021 
  * Released under the undefined License.
  */
@@ -271,7 +271,7 @@ var __vue_staticRenderFns__ = [];
     undefined
   );
 
-var version = '2.0.3';
+var version = '2.1.0';
 
 var install = function install(Vue) {
   Vue.component('v-braintree', Payment);
