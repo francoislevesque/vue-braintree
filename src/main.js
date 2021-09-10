@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import App from './App.vue'
+import Payment from './Payment.vue'
 import './plugin'
 
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App),
+  render: h => h(Payment),
 }).$mount('#app')

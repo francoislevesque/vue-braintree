@@ -1,6 +1,6 @@
 /*!
- * vue-braintree v2.0.2 
- * (c) 2020 
+ * vue-braintree v2.0.3 
+ * (c) 2021 
  * Released under the undefined License.
  */
 import dropIn from 'braintree-web-drop-in';
@@ -267,7 +267,7 @@ var __vue_staticRenderFns__ = [];
     undefined
   );
 
-var version = '2.0.2';
+var version = '2.0.3';
 
 var install = function install(Vue) {
   Vue.component('v-braintree', Payment);
