@@ -1,8 +1,16 @@
 <template>
   <div class="payment">
-    <div ref="dropin"></div>
-    <slot name="button" v-bind:submit="submit">
-      <button @click="submit" :class="btnClass">{{ btnText }}</button>
+    <div ref="dropin" />
+    <slot
+      name="button"
+      :submit="submit"
+    >
+      <button
+        :class="btnClass"
+        @click="submit"
+      >
+        {{ btnText }}
+      </button>
     </slot>
   </div>
 </template>
@@ -67,7 +75,7 @@ export default {
       required: false,
       default: null,
       validator: (value) => {
-        return typeof value === 'object';
+        return typeof value === "object";
       }
     }
   },
@@ -106,6 +114,15 @@ export default {
       this.$emit("load", this.instance);
     });
   },
+  beforeDestroy () {
+    if (this.instance) {
+      this.instance.teardown((err) => {
+        if (err) { 
+          console.error("An error occurred during teardown:", err); 
+        }
+      });
+    }
+  },
   methods: {
     submit (event) {
       if (event) {
@@ -113,7 +130,7 @@ export default {
       }
       let requestPaymentConfig = {};
       if (this.threeDSecure === true) {
-        requestPaymentConfig.threeDSecure = this.threeDSecureParameters
+        requestPaymentConfig.threeDSecure = this.threeDSecureParameters;
       }
       this.instance.requestPaymentMethod(requestPaymentConfig, (err, payload) => {
         if (err) {

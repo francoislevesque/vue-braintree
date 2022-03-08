@@ -6,9 +6,10 @@
     <h1>Braintree Demo</h1>
 
     <v-braintree 
+      v-if="showDropIn"
       authorization="sandbox_9q89mhss_x742hzxzgx6gk233"
       :paypal="{flow: 'vault'}"
-      :three-d-secure="true"
+      :three-d-secure="false"
       :three-d-secure-parameters="{
         amount: 100, 
         email: 'francois@witify.io', 
@@ -39,6 +40,13 @@
     <button class="btn">
       Clear Payment Selection
     </button>
+
+    <br>
+    <br>
+
+    <button @click="deleteInstance" class="btn btn-danger">
+      Delete instance
+    </button>
   </div>
 </template>
 
@@ -47,7 +55,8 @@ export default {
   name: 'demo',
   data () {
     return {
-      instance: null
+      instance: null,
+      showDropIn: true,
     }
   },
   methods: {
@@ -55,18 +64,25 @@ export default {
       this.instance = instance;
     },
     onLoadFail (instance) {
-      alert('load fail');
+      console.error('Load fail', instance);
     },
     onSuccess (payload) {
       console.log("Success!", payload.nonce);
     },
     onError (error) {
-      console.log("Error!", error);
+      console.error("Error:", error);
     },
     clearPaymentSelection () {
       if (this.instance != null) {
         this.instance.clearSelectedPaymentMethod();
       }
+    },
+    deleteInstance() {
+      this.showDropIn = false;
+
+      setInterval(() => {
+        this.showDropIn = true;
+      }, 1000);
     }
   }
 }
