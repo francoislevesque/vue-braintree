@@ -27,6 +27,10 @@ export default {
       type: String,
       default: "en_US"
     },
+    disabled: {
+      type: Array,
+      default: () => []
+    },
     btnText: {
       type: String,
       default: "Pay"
@@ -98,7 +102,8 @@ export default {
       googlePay: this.googlePay,
       vaultManager: this.vaultManager,
       card: this.card,
-      threeDSecure: this.threeDSecure
+      threeDSecure: this.threeDSecure,
+      disabled: this.disabled,
     };
     // Create dropin
     dropIn.create(config, (createErr, instance) => {
@@ -117,8 +122,8 @@ export default {
   beforeDestroy () {
     if (this.instance) {
       this.instance.teardown((err) => {
-        if (err) { 
-          console.error("An error occurred during teardown:", err); 
+        if (err) {
+          console.error("An error occurred during teardown:", err);
         }
       });
     }
