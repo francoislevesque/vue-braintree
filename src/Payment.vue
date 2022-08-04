@@ -29,7 +29,7 @@ export default {
     },
     disabled: {
       type: Array,
-      default: []
+      default: () => []
     },
     btnText: {
       type: String,
