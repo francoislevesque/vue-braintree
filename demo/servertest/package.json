@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "braintree": "^2.21.0"
+    "braintree": "^3.15.0"
   }
 }
